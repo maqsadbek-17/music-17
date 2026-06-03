@@ -1,0 +1,6 @@
+{
+  "name": "MelodyHub",
+  "description": "Modern music search application powered by iTunes API with immersive UI.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["Music Search", "Audio Preview"]
+}
