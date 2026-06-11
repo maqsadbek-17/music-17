@@ -1,6 +1,11 @@
 {
-  "name": "MelodyHub",
-  "description": "Modern music search application powered by iTunes API with immersive UI.",
+  "name": "Khiva Music",
+  "description": "Premium, responsive musiqa platformasi. Modern UI, audio discovery, Xiva madaniyatidan ilhomlangan dizayn va SEO optimizatsiyalangan saytidan foydalaning.",
   "requestFramePermissions": [],
-  "majorCapabilities": ["Music Search", "Audio Preview"]
+  "majorCapabilities": [
+    "Music Search",
+    "Audio Preview",
+    "Premium UI",
+    "Responsive Design"
+  ]
 }

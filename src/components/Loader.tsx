@@ -1,4 +1,4 @@
-import { motion } from 'motion/react';
+import { motion } from "motion/react";
 
 export default function Loader() {
   return (
@@ -14,13 +14,15 @@ export default function Loader() {
               duration: 1,
               repeat: Infinity,
               delay: i * 0.1,
-              ease: "easeInOut"
+              ease: "easeInOut",
             }}
             className="w-1.5 bg-indigo-500 rounded-full"
           />
         ))}
       </div>
-      <p className="text-white/40 text-sm font-medium animate-pulse tracking-widest uppercase">Yuklanmoqda...</p>
+      <p className="text-[color:var(--muted)] text-sm font-medium animate-pulse tracking-widest uppercase">
+        Khiva Music yuklanmoqda...
+      </p>
     </div>
   );
 }

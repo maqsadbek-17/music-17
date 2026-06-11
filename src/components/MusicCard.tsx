@@ -1,7 +1,7 @@
-import { Play, Pause, Music } from 'lucide-react';
-import { motion } from 'motion/react';
-import React, { useState, useRef, useEffect } from 'react';
-import { Track } from '../types';
+import { Play, Pause, Music } from "lucide-react";
+import { motion } from "motion/react";
+import React, { useState, useRef, useEffect } from "react";
+import { Track } from "../types";
 
 interface MusicCardProps {
   track: Track;
@@ -17,8 +17,8 @@ const MusicCard: React.FC<MusicCardProps> = ({ track }) => {
         audioRef.current.pause();
       } else {
         // Pause all other potentially playing audios
-        document.querySelectorAll('audio').forEach(audio => {
-           if (audio !== audioRef.current) audio.pause();
+        document.querySelectorAll("audio").forEach((audio) => {
+          if (audio !== audioRef.current) audio.pause();
         });
         audioRef.current.play();
       }
@@ -34,14 +34,14 @@ const MusicCard: React.FC<MusicCardProps> = ({ track }) => {
     const handlePause = () => setIsPlaying(false);
     const handlePlay = () => setIsPlaying(true);
 
-    audio.addEventListener('ended', handleEnded);
-    audio.addEventListener('pause', handlePause);
-    audio.addEventListener('play', handlePlay);
+    audio.addEventListener("ended", handleEnded);
+    audio.addEventListener("pause", handlePause);
+    audio.addEventListener("play", handlePlay);
 
     return () => {
-      audio.removeEventListener('ended', handleEnded);
-      audio.removeEventListener('pause', handlePause);
-      audio.removeEventListener('play', handlePlay);
+      audio.removeEventListener("ended", handleEnded);
+      audio.removeEventListener("pause", handlePause);
+      audio.removeEventListener("play", handlePlay);
     };
   }, []);
 
@@ -51,12 +51,12 @@ const MusicCard: React.FC<MusicCardProps> = ({ track }) => {
       initial={{ opacity: 0, scale: 0.9 }}
       animate={{ opacity: 1, scale: 1 }}
       whileHover={{ y: -8, scale: 1.02 }}
-      className="group relative bg-white/5 border border-white/10 rounded-[2.5rem] p-4 transition-all hover:bg-white/10 overflow-hidden flex flex-col h-full"
+      className="group relative bg-[color:var(--panel)] border border-[color:var(--border)] rounded-[2.5rem] p-4 transition-all hover:bg-[color:var(--panel-2)] overflow-hidden flex flex-col h-full shadow-[0_18px_40px_rgba(15,23,42,0.12)]"
       id={`track-${track.trackId}`}
     >
       <div className="relative aspect-square rounded-[2rem] overflow-hidden mb-5">
         <img
-          src={track.artworkUrl100.replace('100x100', '600x600')}
+          src={track.artworkUrl100.replace("100x100", "600x600")}
           alt={track.trackName}
           className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
           referrerPolicy="no-referrer"
@@ -67,7 +67,11 @@ const MusicCard: React.FC<MusicCardProps> = ({ track }) => {
             className="w-14 h-14 rounded-full bg-white text-black flex items-center justify-center shadow-2xl transform scale-75 group-hover:scale-100 transition-all active:scale-90 duration-300"
             id={`play-button-${track.trackId}`}
           >
-            {isPlaying ? <Pause fill="currentColor" size={24} /> : <Play fill="currentColor" size={24} className="ml-1" />}
+            {isPlaying ? (
+              <Pause fill="currentColor" size={24} />
+            ) : (
+              <Play fill="currentColor" size={24} className="ml-1" />
+            )}
           </button>
         </div>
         {isPlaying && (
@@ -78,18 +82,21 @@ const MusicCard: React.FC<MusicCardProps> = ({ track }) => {
       </div>
 
       <div className="px-2 pb-2 flex-1 flex flex-col">
-        <h3 className="font-bold text-white text-base leading-tight line-clamp-1 mb-1 transition-colors group-hover:text-indigo-400">
+        <h3 className="font-bold text-[color:var(--text)] text-base leading-tight line-clamp-1 mb-1 transition-colors group-hover:text-indigo-400">
           {track.trackName}
         </h3>
-        <p className="text-white/50 text-[13px] font-medium line-clamp-1 mb-4">{track.artistName}</p>
-        
+        <p className="text-[color:var(--muted)] text-[13px] font-medium line-clamp-1 mb-4">
+          {track.artistName}
+        </p>
+
         <div className="mt-auto pt-4 flex items-center justify-between border-t border-white/5">
-          <span className="flex items-center gap-1.5 py-1 px-2.5 bg-white/5 rounded-full text-[10px] text-white/40 uppercase font-bold tracking-wider">
-            <Music size={10} className="text-indigo-500" /> {track.primaryGenreName}
+          <span className="flex items-center gap-1.5 py-1 px-2.5 bg-[color:var(--panel-2)] rounded-full text-[10px] text-[color:var(--muted)] uppercase font-bold tracking-wider border border-[color:var(--border)]">
+            <Music size={10} className="text-indigo-500" />{" "}
+            {track.primaryGenreName}
           </span>
         </div>
       </div>
-      
+
       <audio ref={audioRef} src={track.previewUrl} />
     </motion.div>
   );
